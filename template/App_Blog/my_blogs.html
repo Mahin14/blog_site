@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block titile_block %}{{user}}{% endblock %}
+{% block body %}
+<h3>{{delete_text}}</h3>
+{%for blog in user.post_author.all%}
+<h3>{{blog.blog_title}}</h3>
+<h6>creater on : {{blog.publish_date}}</h6>
+<hr>
+<a href="{% url 'App_Blog:edit_blog' pk=blog.pk %}"  class="btn btn-primary">Edit</a> 
+<a href="{% url 'App_Blog:delete_blog' pk=blog.id %}"type="button" class="btn btn-danger">Delete</a> 
+
+  
+{%endfor%}
+{% endblock  %}

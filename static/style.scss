@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@mixin text-align{
+    text-align: center;
+}
+@mixin flex-display(){
+    display: flex;
+    flex: 1;
+ 
+ 
+
+}
+
+
+body {
+    margin: auto;
+    padding: 0;
+    max-width: 950px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.main-title h1 {
+    font-family: 'Kaushan Script', cursive;
+    
+    @include text-align;
+    letter-spacing: 2px;
+    font-size: 3.5em;
+    color: #333e55;
+    margin: 30px 0 0 0;
+}
+
+.main-title h2 {
+    @include text-align;
+    text-transform: uppercase;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    font-size: 1.1em;
+    margin: 0 0 20px 0;
+    color: #383737;
+}
+
+
+.article-aside-flex {
+    display: flex;
+}
+
+.article-column {
+    flex-direction: column;
+    flex: 3;
+    margin-right: 10px;
+}
+
+aside {
+    flex-direction: column;
+    flex: 1;
+    margin-left: 10px;
+}
+
+article h2 {
+    @include text-align;
+    
+    font-size: 30px;
+    font-weight: 300;
+    color: #383737;
+    margin-bottom: 0;
+}
+
+p{.article-date {
+    @include text-align;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #807d7d;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+.article-text {
+    color: #3d3b3b;
+    letter-spacing: 2px;
+    line-height: 25px;
+}
+}
+
+.article-content img {
+    width: 100%;
+}
+
+
+.read-more-button {
+    display: flex;
+    justify-content: center;
+    // text-decoration: none;
+
+    button {
+        background-color: #a8bff0;
+        color: white;
+        text-transform: uppercase;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 50px 50px;
+        letter-spacing: 2px;
+        /* border-style:none; */
+        .button_a{
+            text-decoration: none;
+           }
+        //    text-decoration: none;
+        
+    }
+}
+
+
+.comment_label_share {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-label {
+    @include flex-display();
+
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.share-article {
+    @include flex-display();
+    justify-content: flex-end;
+    align-items: baseline;
+    
+}
+
+.links-icons a,
+.right-menu a,
+.aside-links a {
+    padding: 5px;
+    color: #787878;
+    font-size: 1.2em;
+    &:hover{color:rgb(151, 189, 232);}
+}
+
+.share-article p
+ {
+    padding-right: 15px;
+    text-align: center;
+    opacity: 0.5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    font-weight: lighter;
+    color: #807d7d;
+}
+.comment-label p{
+    @extend .share-article;
+}
+.about-aside h2
+ {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    color: #252525;
+    text-transform: uppercase;
+}
+.aside-links h2{
+    @extend .about-aside;
+}
+
+
+.about-aside p
+ {
+    text-align: left;
+    letter-spacing: 2px;
+    line-height: 20px;
+    color: #3d3b3b;
+}
+footer p {
+    @extend .about-aside;
+}
+.aside-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.about-aside img {
+    width: 100%;
+}
+
+hr {
+    border-color: #c7c4c4;
+    opacity: 0.2;
+}
+
+footer .copyright-part {
+    font-size: 12px;
+}
+
+.comment-text{
+    font-size:25px;
+    // font-weight:bold;
+}
+.love_log{
+    font-size: 100px;
+ 
+
+}
+
+
+
+
+@media screen and (max-width: 576px) {
+
+
+
+   
+    .article-aside-flex {
+        flex-direction: column;
+    }
+
+    .article-column {
+        margin: 0 15px;
+    }
+
+    .share-article p {
+        display: none;
+    }
+
+    .share-article {
+        align-items: center;
+    }
+   
+    aside {
+        margin-left: 0;
+    }
+    .about-aside {
+        margin: 0 15px;
+    }
+
+    footer {
+        margin: 0 15px;
+    }
+
+
+    .p_tag {
+        background-color: red;
+    }
+    
+    
+}
+
+
+
+
+.read-more-button button {
+    outline: none;
+    }
+.change_btn {
+        text-decoration: none;
+        color:black;
+        &:hover{
+            color:black;
+        }
+        }
+
+nav {
+    .right-menu{
+        float: right;
+}
+}

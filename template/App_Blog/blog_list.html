@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block titile_block %}Home{% endblock %}
+{%block style_block%}
+
+{%endblock%}
+
+{% block body %}
+<div class="article-aside-flex">
+    <div class="article-column">
+        {%for blog in blogs %}
+        <article>
+            <div class="article-content"> 
+                <h2>{{blog.blog_title}}</h2>
+                <p class="article-date">{{blog.publish_date}}</p>
+                <img src="{{ blog.blog_image.url}}" width="150px" height="350px" alt="{{blog.blog_title}}">
+                <p class="article-text"> 
+                    {{blog.blog_content|range_filter|linebreaks}}
+                </p>
+                <p><strong> posted by :<a href="">@ {{blog.author}}</a> </strong>  </p>
+                <div class="read-more-button">
+                    <button type="button"><a href="{%url 'App_Blog:blog_details' slug=blog.slug %}"class="button_a" style="text-decoration:none">Read more</a> </button>
+                </div>
+                <div class="comment_label_share">
+                    <div class="comment-label">
+                        <p><strong>"{{blog.blog_comment.all.count}}" </strong>  Comments || love's :<strong>{{blog.liked_blog.all.count}}</strong>
+                        </p>
+                        
+                    </div>
+                    <div class="share-article">
+                        <p>Share:</p>
+                        <div class="links-icons">
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-pinterest"></i></a>
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </article>
+{%endfor%}
+    </div>
+
+    <aside>
+        <div class="about-aside">
+
+            <h2>About me</h2>
+            {%if user.is_authenticated%}
+
+            <img src="/media/{{user.user_profile.profile_pic}}" width="100px" height="200px" alt="{{user.username}}">
+            {%else%}
+            <img src="/media/profile_pic/person.png" width="100px" height="150px" alt="no user">
+
+            {%endif%}
+            <p><strong>username:</strong><br>
+               {{user.username}}
+            </p>
+            <p><strong>Name:</strong> <br>
+                {{user.first_name}}
+                {{user.last_name}}
+             </p>
+      
+             <p><strong>email:</strong><br>
+                {{user.email}}
+             </p>
+        </div>
+        <hr/>
+
+        <div class="aside-links">
+            <h2>Follow</h2>
+            <div>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <hr/>
+    </aside>
+</div>
+</main>
+
+
+{% endblock  %}

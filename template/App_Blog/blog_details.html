@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block titile_block %}{{blog.blog_title}}{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-6">
+        <h1>{{blog.blog_title}}</h1>
+        <h4>posted by:@ {{blog.author}}</h4>
+        <i> <h6>published On: {{blog.publish_date}}</h6></i>
+        <i> <h6>update on:{{blog.update_date}}</h6></i>
+
+    </div>
+    <div class="col-sm-6">
+        <img src="{{blog.blog_image.url}}" width="80%" alt="{{blog.blog_title}}">
+    </div>
+    <p>{{blog.blog_content|linebreaks}}</p>
+    </div>
+<!-- {%if user.is_authenticated%} -->
+<div class="row">
+    <div class="col-sm-12">
+        {%if not liked %}
+        <a href="{% url 'App_Blog:like_post' pk=blog.pk%}"><i class="far fa-heart love_log"></i></a>
+        {%else%}
+        <a href="{% url 'App_Blog:unlike_post' pk=blog.pk%}"><i class="fas fa-heart love_log2"></i></a>
+        {%endif%}
+    </div>
+    <br>
+
+    <span style="color:blue">Total person love it:{{blog.liked_blog.all.count}}</span>
+
+</div>
+<!-- {%endif%} -->
+    <div class="row">
+    <div class="col-sm-6">
+        <form method="POST" >
+            <!-- <h4>submit a comment</h4> -->
+            <!-- comment input -->
+            {%csrf_token%}
+        
+              <label class="form-label" for="form4Example3"> Submit your comment</label>
+              {{comment_form|crispy}}
+
+            
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block my-4 mb-4">Submit</button>
+          </form>
+        </div>
+ <div class="col-sm-6">
+     <h3>Total comment:{{blog.blog_comment.all.count}}</h3>
+     {%for comment in blog.blog_comment.all %}
+     <hr>
+     <p class="comment-text">{{comment.comment}}</p>
+     <h6>@{{comment.user}}</h6>
+     <h6>{{comment.comment_date}}</h6>
+    
+     {%endfor%}
+ </div>
+    </div>
+{% endblock  %}
